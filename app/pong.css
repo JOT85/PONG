@@ -1,0 +1,277 @@
+@font-face {
+	font-family: retro;
+	src: url('pcsenior.ttf');
+}
+
+html, body {
+	padding: 0px;
+	margin: 0px;
+	background-color: #000;
+	overflow: hidden;
+	cursor: none;
+	color: #fff;
+	font-family: retro;
+	font-size: 0.93em;
+	user-select: none;
+}
+
+input {
+	font-family: retro;
+	font-size: 1em;
+	margin: 0px;
+	cursor: none;
+	user-select: none;
+}
+
+#ball {
+	position: absolute;
+	will-change: transform;
+	border-style: none;
+	border-width: none;
+	background-color: #fff;
+}
+
+#leftPad, #rightPad {
+	position: absolute;
+	will-change: transform;
+	top: 0px;
+	border-style: none;
+	border-width: none;
+	background-color: #fff;
+}
+
+#midLine {
+	position: absolute;
+	left: calc(50% - 1px);
+	top: 0px;
+	height: 100%;
+	width: 2px;
+	background-color: #fff;
+}
+
+#score1, #score2 {
+	position: absolute;
+	top: 10px;
+	margin: 0px;
+	padding: 0px;
+	width: 50%;
+	height: auto;
+	color: #fff;
+	font-size: 3em;
+	text-align: center;
+}
+
+#score1 {
+	left: 0px;
+}
+
+#score2 {
+	right: 0px;
+}
+
+#winner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: #fff;
+	font-size: 4.5em;
+	background-color: #000;
+	padding: 25px;
+	display: none;
+}
+
+#pongContainer {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+	border-style: none;
+	overflow: hidden;
+	display: none;
+}
+
+.opts-container:not(#modes) {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #fff;
+	margin: 7px;
+	padding: 7px;
+	box-sizing: border-box;
+	width: 45%;
+	display: block;
+}
+
+#modes {
+	border-style: none;
+	margin: 7px;
+	padding: 7px;
+	padding-top: 14px;
+	box-sizing: border-box;
+	width: 45%;
+	display: block;
+	text-align: center;
+}
+
+.so, .sob, input {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #fff;
+	margin: 3px;
+	padding: 6px;
+	display: inline-block;
+	text-align: center;
+	width: auto;
+	height: auto;
+	background-color: #000;
+	color: #fff;
+}
+
+.sob.highlighted, input.highlighted {
+	background-color: #fff;
+	color: #000;
+}
+
+.so.highlighted {
+	border-style: dashed;
+}
+
+.so {
+	border-width: 2px;
+}
+
+.so.op-selected {
+	border-width: 4px;
+}
+
+.so.highlighted.op-selected {
+	background-color: #fff;
+	color: #000;
+}
+
+#optsDiv {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	box-sizing: border-box;
+	width: 100%;
+	overflow: hidden;
+	display: none;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: center;
+}
+
+.big-button {
+	background-color: #000;
+	color: #fff;
+	border-style: solid;
+	border-color: #fff;
+	border-width: 3px;
+	padding: 7px;
+	margin: 7px;
+	box-sizing: border-box;
+	width: 500px;
+	margin-left: calc(calc(100rem - 500px) / 2);
+	margin-right: calc(calc(100rem - 500px) / 2);
+	font-size: 2em;
+	text-align: center;
+}
+
+.big-button.highlighted {
+	background-color: #fff;
+	color: #000;
+}
+
+h3 {
+	padding: 5px;
+	margin: 0px;
+}
+
+.selection {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #fff;
+	background-color: #000;
+}
+
+.selection>.dot {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	border-style: none;
+	border-radius: 5px;
+	width: 10px;
+	height: 10px;
+	background-color: #fff;
+	display: none;
+}
+
+.selection.ss>.dot {
+	display: block;
+}
+
+.selection.highlighted {
+	background-color: #fff;
+}
+
+.selection.highlighted>.dot {
+	background-color: #000;
+}
+
+#splash {
+	position: absolute;
+	left: 0px;
+	top: calc(50% - 102px);
+	transform: translateY(-50%);
+	width: 100%;
+}
+
+#mainTitle, #mainSub, #subSub, #controls {
+	width: 100%;
+	height: auto;
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+#controls {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+#mainTitle {
+	font-size: 13em;
+}
+
+table {
+	display: inline-block;
+}
+
+td {
+	margin: 0px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #fff;
+	padding: 5px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 0.8em;
+}
+
+/*#mainCanvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}*/

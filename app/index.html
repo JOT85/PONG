@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>
+PONG
+</title>
+<link rel="stylesheet" type="text/css" href="pong.css">
+</head>
+<body>
+<div ID="splash">
+	<h1 ID="mainTitle">PONG</h1>
+	<h2 ID="mainSub">Press Any Button To Start.</h2>
+</div>
+<div ID="controls"><table style="margin-bottom: 12px;">
+	<tr><td>Action</td><td>Key</td><td>GPIO Input</td></tr>
+	<tr><td>Left pad up</td><td>W</td><td>-</td></tr>
+	<tr><td>Left pad down</td><td>S</td><td>-</td></tr>
+	<tr><td>Right pad up</td><td>Up arrow</td><td>-</td></tr>
+	<tr><td>Right pad down</td><td>Down arrow</td><td>-</td></tr>
+	<tr><td>Escape</td><td>Escape</td><td>-</td></tr>
+</table><br>Use the left pad controls to move between options and the right pad controls to change/activate them.<br><br>Press any mouse button to enable the mouse.</div>
+<div ID="pongContainer"><div ID="ball"></div><div ID="leftPad"></div><div ID="rightPad"></div><!--<canvas ID="mainCanvas"><!----></canvas><div ID="midLine"></div><div ID="score1"></div><div ID="score2"></div><div ID="winner"></div></div>
+<div ID="optsDiv">
+	<div ID="modes" class="opts-container">
+		<div ID="mode-easy" class="sob">Easy</div>
+		<div ID="mode-norm" class="sob">Normal</div>
+		<div ID="mode-classic" class="sob">Classic</div>
+		<div ID="mode-hard" class="sob">Hard</div>
+		<div ID="mode-extreme" class="sob">Extreme</div>
+		<div ID="mode-c1" class="sob">Custom 1</div>
+		<div ID="mode-c2" class="sob">Custom 2</div>
+		<div ID="mode-c3" class="sob">Custom 3</div>
+	</div>
+	<br> <div ID="GO-button" class="big-button">Play</div>
+	<br> <div ID="ball-opts" class="opts-container">
+		<h3>Ball Options</h3>
+		Ball speed: <input type="text" readonly ID="ball-speed"> (px/s)
+		<br> Ball acceleration: <input type="text" readonly ID="ball-acceleration"> (px/s<sup>2</sup>)
+		<br> Ball radius: <input type="text" readonly ID="ball-radius"> (px)
+		<br> Ball shape: <div class="so" ID="shape-square">Square</div> <div class="so" ID="shape-circle">Circle</div>
+		<br> Ball hitbox: <input type="text" readonly ID="ball-hitbox"> (x of radius)
+		<br> <div class="selection" ID="ball-scale"><div class="dot"></div></div> Scale these settings
+	</div>
+	<div ID="world-opts" class="opts-container">
+		<h3>Game Options</h3>
+		Score limit: <div class="so" ID="limit-no">No limit</div> <div class="so" ID="limit-yes">Follow rules below</div>
+		<br> Max score: <input type="text" readonly ID="max-score">
+		<br> Win by: <input type="text" readonly ID="win-by">
+		<br> Game width: <input type="text" readonly ID="game-width">
+		<br> Game height: <input type="text" readonly ID="game-height">
+		<br> <div class="selection" ID="world-quality"><div class="dot"></div></div> Prioritize ball render, makes ball smooth while sacrificing the pad frame rate when both are moving.
+		<br> <div class="selection" ID="world-scale"><div class="dot"></div></div> Scale these settings
+	</div>
+	<br> <div ID="pad1-opts" class="opts-container">
+		<h3>Pad 1 Options</h3>
+		Pad speed: <input type="text" readonly ID="pad1-speed"> (px/s)
+		<br> Pad height: <input type="text" readonly ID="pad1-height"> (px)
+		<br> Pad width: <input type="text" readonly ID="pad1-width"> (px)
+		<br> Pad offset: <input type="text" readonly ID="pad1-offset"> (px)
+		<br> <div class="selection" ID="pad1-scale"><div class="dot"></div></div> Scale these settings
+		<br> <div ID="p1c2" class="sob">Copy pad 2</div>
+	</div>
+	<div ID="pad2-opts" class="opts-container">
+		<h3>Pad 2 Options</h3>
+		Pad speed: <input type="text" readonly ID="pad2-speed"> (px/s)
+		<br> Pad height: <input type="text" readonly ID="pad2-height"> (px)
+		<br> Pad width: <input type="text" readonly ID="pad2-width"> (px)
+		<br> Pad offset: <input type="text" readonly ID="pad2-offset"> (px)
+		<br> <div class="selection" ID="pad2-scale"><div class="dot"></div></div> Scale these settings
+		<br> <div ID="p2c1" class="sob">Copy pad 1</div>
+	</div>
+	<br> <div ID="scale-opts" class="opts-container">
+		<h3>Scaling options</h3>
+		Width: <input type="text" readonly ID="scale-width">
+		<br> Height: <input type="text" readonly ID="scale-height">
+		<br> <div ID="rescale-but" class="sob">Rescale current settings to current screen resolution</div>
+		<br> <div ID="setscale-but" class="sob">Set the scaling values to the current screen resolution however don't rescale other settings</div>
+	</div>
+	<div ID="save-opts" class="opts-container">
+		<h3>Save current settings</h3>
+		<div ID="sc1-but" class="sob">Custom 1</div>
+		<br> <div ID="sc2-but" class="sob">Custom 2</div>
+		<br> <div ID="sc3-but" class="sob">Custom 3</div>
+	</div>
+</div>
+<script type="text/javascript" src="pong.js">
+</script>
+<script type="text/javascript">
+
+	function setUp() {
+		
+		document.body.removeEventListener("keydown", setUp) ;
+		document.body.removeEventListener("mousedown", setUp) ;
+		
+		document.body.addEventListener("keydown",e=>{
+			if (e.key === 'ArrowUp') {
+				controls.rightPadUp = true ;
+			} else if (e.key === 'ArrowDown') {
+				controls.rightPadDown = true ;
+			} else if (e.key.toLowerCase() === 'w') {
+				controls.leftPadUp = true ;
+			} else if (e.key.toLowerCase() === 's') {
+				controls.leftPadDown = true ;
+			} else if (e.key.toLowerCase() === 'escape') {
+				controls.esc = true ;
+			}
+		}) ;
+		
+		document.body.addEventListener("keyup",e=>{
+			if (e.key === 'ArrowUp') {
+				controls.rightPadUp = false ;
+			} else if (e.key === 'ArrowDown') {
+				controls.rightPadDown = false ;
+			} else if (e.key.toLowerCase() === 'w') {
+				controls.leftPadUp = false ;
+			} else if (e.key.toLowerCase() === 's') {
+				controls.leftPadDown = false ;
+			} else if (e.key.toLowerCase() === 'escape') {
+				controls.esc = false ;
+			}
+		}) ;
+		
+		start() ;
+		
+	}
+	
+	document.body.addEventListener("keydown", setUp) ;
+	document.body.addEventListener("mousedown", setUp) ;
+
+</script>
+</body>
+</html>
