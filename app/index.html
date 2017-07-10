@@ -9,6 +9,7 @@ PONG
 <div ID="splash">
 	<h1 ID="mainTitle">PONG</h1>
 	<h2 ID="mainSub">Press Any Button To Start.</h2>
+	<h4 ID="subSub"><br><br>Inspired by the original Atari Pong.<br><br>Fork on GitHub (press g).</h4>
 </div>
 <div ID="controls"><table style="margin-bottom: 12px;">
 	<tr><td>Action</td><td>Key</td><td>GPIO Input</td></tr>
@@ -17,7 +18,7 @@ PONG
 	<tr><td>Right pad up</td><td>Up arrow</td><td>-</td></tr>
 	<tr><td>Right pad down</td><td>Down arrow</td><td>-</td></tr>
 	<tr><td>Escape</td><td>Escape</td><td>-</td></tr>
-</table><br>Use the left pad controls to move between options and the right pad controls to change/activate them.<br><br>Press any mouse button to enable the mouse.</div>
+</table><br>Use the left pad controls to move between options and the right pad controls to change/activate them.<br><br><!--Press any mouse button to enable the mouse.--></div>
 <div ID="pongContainer"><div ID="ball"></div><div ID="leftPad"></div><div ID="rightPad"></div><!--<canvas ID="mainCanvas"><!----></canvas><div ID="midLine"></div><div ID="score1"></div><div ID="score2"></div><div ID="winner"></div></div>
 <div ID="optsDiv">
 	<div ID="modes" class="opts-container">
@@ -86,7 +87,12 @@ PONG
 </script>
 <script type="text/javascript">
 
-	function setUp() {
+	function setUp(e) {
+		
+		if ((e.key || "").toLowerCase() === "g") {
+			window.open("https://github.com/JOT85/PONG","_blank") ;
+			return ;
+		}
 		
 		document.body.removeEventListener("keydown", setUp) ;
 		document.body.removeEventListener("mousedown", setUp) ;
