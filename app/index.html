@@ -19,7 +19,7 @@ PONG
 	<tr><td>Right pad down</td><td>Down arrow</td><td>-</td></tr>
 	<tr><td>Escape</td><td>Escape</td><td>-</td></tr>
 </table><br>Use the left pad controls to move between options and the right pad controls to change/activate them.<br><br><!--Press any mouse button to enable the mouse.--></div>
-<div ID="pongContainer"><div ID="ball"></div><div ID="leftPad"></div><div ID="rightPad"></div><!--<canvas ID="mainCanvas"><!----></canvas><div ID="midLine"></div><div ID="score1"></div><div ID="score2"></div><div ID="winner"></div></div>
+<div ID="pongContainer"><div ID="ball"></div><div ID="leftPad"></div><div ID="rightPad"></div><!--<canvas ID="mainCanvas"></canvas><!--><div ID="midLine"></div><div ID="score1"></div><div ID="score2"></div><div ID="winner"></div></div>
 <div ID="optsDiv">
 	<div ID="modes" class="opts-container">
 		<div ID="mode-easy" class="sob">Easy</div>
@@ -98,29 +98,45 @@ PONG
 		document.body.removeEventListener("mousedown", setUp) ;
 		
 		document.body.addEventListener("keydown",e=>{
-			if (e.key === 'ArrowUp') {
+			let theKey = e.key ;
+			if (theKey.toLowerCase() === "down") {
+				theKey = "ArrowDown" ;
+			} else if (theKey.toLowerCase() === "up") {
+				theKey = "ArrowUp" ;
+			} else if (theKey.toLowerCase() === "esc") {
+				theKey = "Escape" ;
+			}
+			if (theKey === 'ArrowUp') {
 				controls.rightPadUp = true ;
-			} else if (e.key === 'ArrowDown') {
+			} else if (theKey === 'ArrowDown') {
 				controls.rightPadDown = true ;
-			} else if (e.key.toLowerCase() === 'w') {
+			} else if (theKey.toLowerCase() === 'w') {
 				controls.leftPadUp = true ;
-			} else if (e.key.toLowerCase() === 's') {
+			} else if (theKey.toLowerCase() === 's') {
 				controls.leftPadDown = true ;
-			} else if (e.key.toLowerCase() === 'escape') {
+			} else if (theKey.toLowerCase() === 'escape') {
 				controls.esc = true ;
 			}
 		}) ;
 		
 		document.body.addEventListener("keyup",e=>{
-			if (e.key === 'ArrowUp') {
+			let theKey = e.key ;
+			if (theKey.toLowerCase() === "down") {
+				theKey = "ArrowDown" ;
+			} else if (theKey.toLowerCase() === "up") {
+				theKey = "ArrowUp" ;
+			} else if (theKey.toLowerCase() === "esc") {
+				theKey = "Escape" ;
+			}
+			if (theKey === 'ArrowUp') {
 				controls.rightPadUp = false ;
-			} else if (e.key === 'ArrowDown') {
+			} else if (theKey === 'ArrowDown') {
 				controls.rightPadDown = false ;
-			} else if (e.key.toLowerCase() === 'w') {
+			} else if (theKey.toLowerCase() === 'w') {
 				controls.leftPadUp = false ;
-			} else if (e.key.toLowerCase() === 's') {
+			} else if (theKey.toLowerCase() === 's') {
 				controls.leftPadDown = false ;
-			} else if (e.key.toLowerCase() === 'escape') {
+			} else if (theKey.toLowerCase() === 'escape') {
 				controls.esc = false ;
 			}
 		}) ;
